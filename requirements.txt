@@ -8,6 +8,7 @@ colorama==0.4.6
 distro==1.9.0
 exceptiongroup==1.2.0
 Flask==3.0.1
+greenlet==3.0.3
 h11==0.14.0
 httpcore==1.0.2
 httpx==0.26.0
@@ -22,6 +23,7 @@ pydantic_core==2.14.6
 python-dotenv==1.0.0
 requests==2.31.0
 sniffio==1.3.0
+SQLAlchemy==2.0.25
 tqdm==4.66.1
 typing_extensions==4.9.0
 urllib3==2.1.0
