@@ -8,13 +8,13 @@ load_dotenv()
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 PHONE_NUMBER_ID = os.getenv("PHONE_NUMBER_ID")
 VERSION = os.getenv("VERSION")
-
+greeting=['HI','HELLO','SALAM','SLM','SALUT','BONJOUR','HEY']
 #the main function
 def handle_messages(data):
     sender_id, text = get_message(data)
     text_splited = text.upper().split(' ')
     commande = text_splited[0].upper()
-    if commande in ['HI','HELLO','SALAM','SLM','SALUT','BONJOUR','HEY']: #greeting
+    if commande in greeting: #greeting
         send_text_message(sender_id,"Hello! How can I help you?\nmy friend")
     elif commande.upper() !='GET':
         send_text_message(sender_id, f"la commande '{commande}' n'existe pas f had lbot lhrban")
@@ -40,7 +40,6 @@ def handle_messages(data):
     else:
         send_text_message(sender_id, "Invalid Syntax")
 
-
 def get_message(data):
     sender_id = ''  
     text = ''       
@@ -55,7 +54,6 @@ def get_message(data):
                     print(sender_id, ':', text)
     return sender_id, text 
 
-#send the message text back to the user in Whatsapp chat
 def send_text_message(recipient_id, text):
     url = f"https://graph.facebook.com/v13.0/{PHONE_NUMBER_ID}/messages"
     headers = {
@@ -70,7 +68,6 @@ def send_text_message(recipient_id, text):
     }
     requests.post(url, headers=headers, json=data)
     
-#send pdf to user
 def send_pdf_message(pdf_url, recipient_id):
     url = f"https://graph.facebook.com/{VERSION}/{PHONE_NUMBER_ID}/messages"
     headers = {
@@ -89,8 +86,7 @@ def send_pdf_message(pdf_url, recipient_id):
     }
     requests.post(url, headers=headers, json=data)
 
-#send pdf to user
-def send_image_whatsapp_message(image_url, recipient_id):
+def send_image_message(image_url, recipient_id):
     """
     Send an image to a WhatsApp number via a link.
 
@@ -115,4 +111,3 @@ def send_image_whatsapp_message(image_url, recipient_id):
     }
 
     requests.post(url, headers=headers, json=data)
-
