@@ -116,3 +116,12 @@ def send_image_whatsapp_message(image_url, recipient_id):
 
     requests.post(url, headers=headers, json=data)
 
+
+def get_db_url(ENV):
+    if ENV == 'PROD':
+        DB_URL = os.getenv("DATABASE_URL")
+    elif ENV == 'DEV':
+        DB_URL = os.getenv("DATABASE_URL_DEV")
+    else:
+        DB_URL = os.getenv("DATABASE_URL_LOCAL")
+    return DB_URL
